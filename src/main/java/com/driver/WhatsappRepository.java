@@ -28,19 +28,21 @@ public class WhatsappRepository {
         this.customGroupCount = 0;
         this.messageId = 0;
     }
-    public String createUser(String name, String  mobile) throws Exception {
-        if(!userMobile.contains(mobile))
+    public String createUser(String name, String mobile) throws Exception
+    {
+        //If the mobile number exists in database, throw "User already exists" exception
+        //Otherwise, create the user and return "SUCCESS"
+        if (!userMobile.contains(mobile))
         {
             userMobile.add(mobile);
-            User user = new User(name,mobile);
-            userMap.put(name,user);
-            return "SUCESS";
+            User user = new User(name, mobile);
+            userMap.put(name, user);
+            return "SUCCESS";
         }
         else
         {
-            throw new Exception("user already exist");
+            throw new Exception("User already exists");
         }
-
     }
     public Group createGroup(List<User> users)
     {
